@@ -13,7 +13,7 @@ const About = () => {
           <div className="max-w-3xl mx-auto">
             <div className="space-y-6">
               <p className="text-lg text-muted-foreground leading-relaxed">
-                I am a final-year B.E-CSE (AI & ML) student with hands-on experience in Machine Learning, Python, and Data Analytics. I've completed multiple internships and real-time projects, participated in technical workshops, and developed strong skills in both tech and communication.
+                I'm a final-year B.E CSE (AI & ML) student with hands-on experience in Java, Python, SQL, Excel, and Machine Learning. I've worked on real-time projects and internships, gaining practical skills in data analysis and problem-solving. Along with my technical expertise, I've built strong communication and teamwork abilities through workshops and collaborative projects.
               </p>
               
               <Card className="p-6 bg-gradient-to-r from-primary/10 to-blue-600/10 border-l-4 border-primary">

@@ -12,7 +12,7 @@ const Resume = ({ isOpen, onClose }: ResumeProps) => {
 
   const handleDownload = () => {
     const link = document.createElement('a');
-    link.href = '/lovable-uploads/fa400c14-183f-4d9f-92e1-3131b3774c4d.png';
+    link.href = '/lovable-uploads/aad05d85-b6a4-4a54-9cd7-2242525fb642.png';
     link.download = 'Naveen_K_Resume.png';
     document.body.appendChild(link);
     link.click();
@@ -45,7 +45,7 @@ const Resume = ({ isOpen, onClose }: ResumeProps) => {
         </div>
         <div className="p-4 overflow-auto max-h-[calc(90vh-80px)]">
           <img
-            src="/lovable-uploads/fa400c14-183f-4d9f-92e1-3131b3774c4d.png"
+            src="/lovable-uploads/aad05d85-b6a4-4a54-9cd7-2242525fb642.png"
             alt="Naveen K Resume"
             className="w-full h-auto mx-auto shadow-lg rounded-lg"
           />
