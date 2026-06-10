@@ -46,7 +46,7 @@ const Hero = () => {
       y: 0,
       transition: {
         duration: 0.8,
-        ease: [0.21, 1.02, 0.43, 1.01],
+        ease: [0.21, 1.02, 0.43, 1.01] as const,
       },
     },
   };
