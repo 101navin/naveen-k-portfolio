@@ -28,7 +28,7 @@ const Contact = () => {
   const extracurriculars = [
     { text: "Participated in Marathon (Run Against Drugs) by Rotary Club of Phoenix", icon: "🏃" },
     { text: "Kabaddi Tournament – Adhiyamaan College of Engineering", icon: "🏸" },
-    { text: "Skill Based Entrepreneurship Development Programme – , Govt of Tamil Nadu", icon: "" }
+    { text: "Skill Based Entrepreneurship Development Programme – Govt of Tamil Nadu", icon: "📈" }
   ];
 
   return (
@@ -122,8 +122,8 @@ const Contact = () => {
                 <CardTitle className="text-2xl text-foreground font-bold">Professional Training</CardTitle>
               </CardHeader>
               <CardContent className="text-center p-6 pt-0">
-                <h3 className="text-lg font-bold text-foreground mb-1">Q Spider</h3>
-                <p className="text-xs text-primary font-semibold uppercase tracking-wider mb-4">Salem, India (Near New Bus Stand)</p>
+                <h3 className="text-lg font-bold text-foreground mb-1">Q-Spider</h3>
+                <p className="text-xs text-primary font-semibold uppercase tracking-wider mb-4">Mahendra College, Namakkal</p>
                 <p className="text-muted-foreground text-sm leading-relaxed max-w-lg mx-auto">
                   Completed specialized training modules in <strong className="text-foreground font-semibold">Java</strong>, <strong className="text-foreground font-semibold">Database Management (SQL)</strong> and <strong className="text-foreground font-semibold">Communication Skills</strong>, focusing on engineering analytics-ready applications.
                 </p>
@@ -134,7 +134,7 @@ const Contact = () => {
           {/* Footer Copyright */}
           <ScrollReveal direction="fade" delay={0.4} className="text-center mt-20">
             <p className="text-muted-foreground text-sm font-medium leading-relaxed max-w-md mx-auto">
-              Thank you for visiting my portfolio. I'm excited to discuss opportunities in Data Analytics, AI/ML, or Software Engineering!
+              Thank you for visiting my portfolio. I'm excited to discuss opportunities in Web Development, AI/ML, or Software Engineering!
             </p>
             <p className="text-xs text-muted-foreground/55 mt-6 font-medium">
               &copy; {new Date().getFullYear()} Naveen K. All rights reserved.
