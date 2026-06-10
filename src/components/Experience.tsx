@@ -1,80 +1,142 @@
-
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { Briefcase, Calendar, MapPin } from 'lucide-react';
+import ScrollReveal from './ScrollReveal';
 
 const Experience = () => {
   const experiences = [
     {
-      role: "Intern",
+      role: "Predictive Analytics Intern",
       company: "Imagecon India Pvt Ltd",
       duration: "07/2024 - 08/2024",
       location: "SALEM, INDIA",
       type: "Internship",
-      description: "Done the internship about Predictive Analytics for Hourly-Based Score Estimation using machine learning",
+      description: "Conducted machine learning research and modeling on student hourly score estimations, leveraging regression and predictive modeling to estimate academic outcomes.",
       highlights: ["Predictive Analytics", "Machine Learning", "Data Analysis"]
     },
     {
-      role: "Intern", 
+      role: "Computer Vision Intern", 
       company: "Infosys Springboard",
       duration: "2024",
-      location: "Online",
+      location: "Online (Virtual)",
       type: "Virtual Internship",
-      description: "Focus: Object Detection System - Completed with Certificate",
+      description: "Developed and trained real-time object detection models. Built a functional system architecture for object bounding and classification in video streams.",
       highlights: ["Object Detection", "Computer Vision", "System Development"]
     },
     {
-      role: "Cashier",
+      role: "Part-Time Cashier",
       company: "Dmart Store",
       duration: "1 Year",
-      location: "Part-Time",
+      location: "SALEM, INDIA",
       type: "Work Experience",
-      description: "Handled billing, customer support, and inventory coordination. Built excellent customer service skills.",
+      description: "Managed transaction flows, resolved billing issues, and coordinated stock adjustments. Developed outstanding communication, service quality, and team efficiency.",
       highlights: ["Customer Service", "Billing Management", "Inventory Coordination"]
     }
   ];
 
   return (
-    <section id="experience" className="py-20">
-      <div className="container mx-auto px-4">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-4xl font-bold text-center mb-12 bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent">
-            Experience
-          </h2>
-          
-          <div className="space-y-8">
-            {experiences.map((exp, index) => (
-              <Card key={index} className="hover:shadow-lg transition-all duration-300 transform hover:-translate-y-2 bg-gradient-to-r from-background to-muted/30">
-                <CardHeader>
-                  <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                    <div>
-                      <CardTitle className="text-2xl text-primary mb-2">{exp.role}</CardTitle>
-                      <p className="text-lg font-medium text-foreground">{exp.company}</p>
-                    </div>
-                    <div className="flex flex-col items-end gap-2">
-                      <Badge variant="secondary" className="bg-primary/10 text-primary">
-                        {exp.duration}
-                      </Badge>
-                      <p className="text-sm text-muted-foreground">{exp.location}</p>
-                    </div>
+    <section id="experience" className="py-24 bg-background relative overflow-hidden">
+      <div className="container mx-auto px-6">
+        
+        {/* Section Title */}
+        <div className="max-w-4xl mx-auto text-center mb-20">
+          <ScrollReveal direction="up" delay={0.1}>
+            <span className="text-sm font-semibold tracking-wider text-primary uppercase mb-2 block">My Journey</span>
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary via-blue-500 to-purple-600 bg-clip-text text-transparent inline-block">
+              Experience
+            </h2>
+          </ScrollReveal>
+        </div>
+
+        {/* Timeline Container */}
+        <div className="relative max-w-5xl mx-auto">
+          {/* Vertical Connecting Line */}
+          <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-[2px] -translate-x-1/2 bg-gradient-to-b from-primary/50 via-blue-500/30 to-transparent" />
+
+          <div className="space-y-12">
+            {experiences.map((exp, index) => {
+              const isEven = index % 2 === 0;
+              
+              return (
+                <div 
+                  key={index}
+                  className={`flex flex-col md:flex-row relative items-start md:items-center ${
+                    isEven ? 'md:flex-row-reverse' : ''
+                  }`}
+                >
+                  {/* Timeline Dot */}
+                  <div className="absolute left-4 md:left-1/2 w-6 h-6 rounded-full bg-background border-4 border-primary -translate-x-1/2 flex items-center justify-center z-10 shadow-sm">
+                    <div className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
                   </div>
-                </CardHeader>
-                <CardContent>
-                  <Badge variant="outline" className="mb-4">
-                    {exp.type}
-                  </Badge>
-                  <p className="text-foreground mb-4 leading-relaxed">{exp.description}</p>
-                  <div className="flex flex-wrap gap-2">
-                    {exp.highlights.map((highlight, highlightIndex) => (
-                      <Badge key={highlightIndex} variant="secondary" className="bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-100">
-                        {highlight}
-                      </Badge>
-                    ))}
+
+                  {/* Spacer for Desktop Alignment */}
+                  <div className="hidden md:block w-1/2" />
+
+                  {/* Card Content Wrapper */}
+                  <div className="w-full md:w-[calc(50%-2rem)] pl-10 md:pl-0 md:px-6">
+                    <ScrollReveal 
+                      direction={isEven ? "left" : "right"} 
+                      delay={0.2}
+                    >
+                      <Card className="glass-card glass-card-hover border border-border/40 hover:-translate-y-1.5 transition-all duration-300 relative overflow-hidden group">
+                        
+                        {/* Gradient strip accent */}
+                        <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-primary to-blue-500" />
+                        
+                        <CardHeader className="p-6 pb-4">
+                          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
+                            <div>
+                              <CardTitle className="text-xl md:text-2xl text-foreground font-bold flex items-center gap-2">
+                                <Briefcase className="w-4 h-4 text-primary shrink-0" />
+                                {exp.role}
+                              </CardTitle>
+                              <p className="text-sm font-semibold text-primary/80 mt-1">{exp.company}</p>
+                            </div>
+                            <div className="flex flex-col sm:items-end gap-1.5 shrink-0">
+                              <Badge variant="outline" className="bg-primary/5 text-primary border-primary/20 text-xs w-max font-medium">
+                                {exp.type}
+                              </Badge>
+                            </div>
+                          </div>
+
+                          <div className="flex flex-wrap gap-x-4 gap-y-1.5 text-xs text-muted-foreground mt-3">
+                            <span className="flex items-center gap-1">
+                              <Calendar size={13} />
+                              {exp.duration}
+                            </span>
+                            <span className="flex items-center gap-1">
+                              <MapPin size={13} />
+                              {exp.location}
+                            </span>
+                          </div>
+                        </CardHeader>
+
+                        <CardContent className="p-6 pt-0">
+                          <p className="text-muted-foreground text-sm leading-relaxed mb-5">
+                            {exp.description}
+                          </p>
+                          <div className="flex flex-wrap gap-1.5">
+                            {exp.highlights.map((highlight, highlightIndex) => (
+                              <Badge 
+                                key={highlightIndex} 
+                                variant="secondary" 
+                                className="bg-blue-500/10 text-blue-600 dark:bg-blue-500/5 dark:text-blue-400 border border-blue-500/10 text-[11px] px-2.5 py-0.5 font-medium"
+                              >
+                                {highlight}
+                              </Badge>
+                            ))}
+                          </div>
+                        </CardContent>
+
+                      </Card>
+                    </ScrollReveal>
                   </div>
-                </CardContent>
-              </Card>
-            ))}
+                </div>
+              );
+            })}
           </div>
         </div>
+
       </div>
     </section>
   );

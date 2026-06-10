@@ -48,6 +48,7 @@ const Resume = ({ isOpen, onClose }: ResumeProps) => {
             src="/lovable-uploads/aad05d85-b6a4-4a54-9cd7-2242525fb642.png"
             alt="Naveen K Resume"
             className="w-full h-auto mx-auto shadow-lg rounded-lg"
+            loading="lazy"
           />
         </div>
       </div>
