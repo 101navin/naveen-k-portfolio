@@ -28,14 +28,14 @@ const Contact = () => {
   const extracurriculars = [
     { text: "Participated in Marathon (Run Against Drugs) by Rotary Club of Phoenix", icon: "🏃" },
     { text: "Kabaddi Tournament – Adhiyamaan College of Engineering", icon: "🏸" },
-    { text: "Workshop on Digital Marketing – RP Sarathy College, Salem", icon: "📢" }
+    { text: "Skill Based Entrepreneurship Development Programme – , Govt of Tamil Nadu", icon: "" }
   ];
 
   return (
     <section id="contact" className="py-24 bg-muted/20 relative overflow-hidden">
       <div className="container mx-auto px-6">
         <div className="max-w-4xl mx-auto">
-          
+
           {/* Section Header */}
           <div className="text-center mb-16">
             <ScrollReveal direction="up" delay={0.1}>
@@ -45,9 +45,9 @@ const Contact = () => {
               </h2>
             </ScrollReveal>
           </div>
-          
+
           <div className="grid md:grid-cols-2 gap-8 mb-12">
-            
+
             {/* Contact Information Card */}
             <ScrollReveal direction="left" delay={0.2} className="h-full">
               <Card className="glass-card border border-border/40 hover:-translate-y-1.5 transition-all duration-300 h-full flex flex-col justify-between">
@@ -65,7 +65,7 @@ const Contact = () => {
                       </div>
                       <div className="min-w-0 flex-1">
                         <p className="font-semibold text-foreground text-sm">{contact.label}</p>
-                        <a 
+                        <a
                           href={contact.link}
                           target="_blank"
                           rel="noopener noreferrer"
@@ -76,9 +76,9 @@ const Contact = () => {
                       </div>
                     </div>
                   ))}
-                  
+
                   <div className="pt-4">
-                    <Button 
+                    <Button
                       className="w-full bg-gradient-to-r from-primary to-blue-600 hover:from-primary/95 hover:to-blue-600/95 transition-all duration-300 gap-2 rounded-xl py-6 hover:scale-[1.02] active:scale-95 group font-semibold"
                       onClick={() => window.open('mailto:naveenknaveenk189@gmail.com', '_blank')}
                     >
@@ -122,10 +122,10 @@ const Contact = () => {
                 <CardTitle className="text-2xl text-foreground font-bold">Professional Training</CardTitle>
               </CardHeader>
               <CardContent className="text-center p-6 pt-0">
-                <h3 className="text-lg font-bold text-foreground mb-1">Next Technology</h3>
+                <h3 className="text-lg font-bold text-foreground mb-1">Q Spider</h3>
                 <p className="text-xs text-primary font-semibold uppercase tracking-wider mb-4">Salem, India (Near New Bus Stand)</p>
                 <p className="text-muted-foreground text-sm leading-relaxed max-w-lg mx-auto">
-                  Completed specialized training modules in <strong className="text-foreground font-semibold">Python</strong>, <strong className="text-foreground font-semibold">Java</strong>, <strong className="text-foreground font-semibold">Excel</strong>, and <strong className="text-foreground font-semibold">Database Management (SQL)</strong>, focusing on engineering analytics-ready applications.
+                  Completed specialized training modules in <strong className="text-foreground font-semibold">Java</strong>, <strong className="text-foreground font-semibold">Database Management (SQL)</strong> and <strong className="text-foreground font-semibold">Communication Skills</strong>, focusing on engineering analytics-ready applications.
                 </p>
               </CardContent>
             </Card>

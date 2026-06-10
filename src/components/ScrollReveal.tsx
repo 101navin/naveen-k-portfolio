@@ -74,7 +74,7 @@ const ScrollReveal: React.FC<ScrollRevealProps> = ({
     return {
       duration,
       delay,
-      ease: [0.21, 1.02, 0.43, 1.01],
+      ease: [0.21, 1.02, 0.43, 1.01] as const,
     };
   };
 

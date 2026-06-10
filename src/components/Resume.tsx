@@ -12,8 +12,8 @@ const Resume = ({ isOpen, onClose }: ResumeProps) => {
 
   const handleDownload = () => {
     const link = document.createElement('a');
-    link.href = '/lovable-uploads/aad05d85-b6a4-4a54-9cd7-2242525fb642.png';
-    link.download = 'Naveen_K_Resume.png';
+    link.href = '/lovable-uploads/Naveen_K_Resume.pdf';
+    link.download = 'Naveen_K_Resume.pdf';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);

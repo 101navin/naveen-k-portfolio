@@ -6,16 +6,16 @@ import ScrollReveal from './ScrollReveal';
 const Experience = () => {
   const experiences = [
     {
-      role: "Predictive Analytics Intern",
-      company: "Imagecon India Pvt Ltd",
-      duration: "07/2024 - 08/2024",
+      role: "Full Stack Development Intern",
+      company: "First Matrix Solutions Pvt Ltd",
+      duration: "01/2026 - 02/2026",
       location: "SALEM, INDIA",
       type: "Internship",
-      description: "Conducted machine learning research and modeling on student hourly score estimations, leveraging regression and predictive modeling to estimate academic outcomes.",
-      highlights: ["Predictive Analytics", "Machine Learning", "Data Analysis"]
+      description: "Worked on their live projects to understand the project flow and involved technologies.",
+      highlights: ["Web Development", "JavaScript", "Cpanel"]
     },
     {
-      role: "Computer Vision Intern", 
+      role: "Computer Vision Intern",
       company: "Infosys Springboard",
       duration: "2024",
       location: "Online (Virtual)",
@@ -37,7 +37,7 @@ const Experience = () => {
   return (
     <section id="experience" className="py-24 bg-background relative overflow-hidden">
       <div className="container mx-auto px-6">
-        
+
         {/* Section Title */}
         <div className="max-w-4xl mx-auto text-center mb-20">
           <ScrollReveal direction="up" delay={0.1}>
@@ -56,13 +56,12 @@ const Experience = () => {
           <div className="space-y-12">
             {experiences.map((exp, index) => {
               const isEven = index % 2 === 0;
-              
+
               return (
-                <div 
+                <div
                   key={index}
-                  className={`flex flex-col md:flex-row relative items-start md:items-center ${
-                    isEven ? 'md:flex-row-reverse' : ''
-                  }`}
+                  className={`flex flex-col md:flex-row relative items-start md:items-center ${isEven ? 'md:flex-row-reverse' : ''
+                    }`}
                 >
                   {/* Timeline Dot */}
                   <div className="absolute left-4 md:left-1/2 w-6 h-6 rounded-full bg-background border-4 border-primary -translate-x-1/2 flex items-center justify-center z-10 shadow-sm">
@@ -74,15 +73,15 @@ const Experience = () => {
 
                   {/* Card Content Wrapper */}
                   <div className="w-full md:w-[calc(50%-2rem)] pl-10 md:pl-0 md:px-6">
-                    <ScrollReveal 
-                      direction={isEven ? "left" : "right"} 
+                    <ScrollReveal
+                      direction={isEven ? "left" : "right"}
                       delay={0.2}
                     >
                       <Card className="glass-card glass-card-hover border border-border/40 hover:-translate-y-1.5 transition-all duration-300 relative overflow-hidden group">
-                        
+
                         {/* Gradient strip accent */}
                         <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-primary to-blue-500" />
-                        
+
                         <CardHeader className="p-6 pb-4">
                           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
                             <div>
@@ -117,9 +116,9 @@ const Experience = () => {
                           </p>
                           <div className="flex flex-wrap gap-1.5">
                             {exp.highlights.map((highlight, highlightIndex) => (
-                              <Badge 
-                                key={highlightIndex} 
-                                variant="secondary" 
+                              <Badge
+                                key={highlightIndex}
+                                variant="secondary"
                                 className="bg-blue-500/10 text-blue-600 dark:bg-blue-500/5 dark:text-blue-400 border border-blue-500/10 text-[11px] px-2.5 py-0.5 font-medium"
                               >
                                 {highlight}

@@ -8,7 +8,7 @@ const Education = () => {
     {
       degree: "B.E - CSE (AI & ML)",
       institution: "Mahendra Institute of Technology",
-      duration: "2022 - 2026 (Expected)",
+      duration: "2022 - 2026",
       location: "NAMAKKAL, TAMILNADU",
       type: "Higher Education"
     },
@@ -25,7 +25,7 @@ const Education = () => {
     <section id="education" className="py-24 bg-background relative overflow-hidden">
       <div className="container mx-auto px-6">
         <div className="max-w-4xl mx-auto">
-          
+
           {/* Section Header */}
           <div className="text-center mb-16">
             <ScrollReveal direction="up" delay={0.1}>
@@ -35,19 +35,19 @@ const Education = () => {
               </h2>
             </ScrollReveal>
           </div>
-          
+
           {/* Education list */}
           <div className="space-y-8">
             {education.map((edu, index) => (
-              <ScrollReveal 
-                key={index} 
-                direction={index % 2 === 0 ? "left" : "right"} 
+              <ScrollReveal
+                key={index}
+                direction={index % 2 === 0 ? "left" : "right"}
                 delay={0.15 * index}
               >
                 <Card className="glass-card glass-card-hover border border-border/40 hover:-translate-y-1.5 transition-all duration-300 relative overflow-hidden group">
                   {/* Decorative corner glow */}
                   <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-primary/5 to-blue-500/5 rounded-bl-full pointer-events-none" />
-                  
+
                   <CardHeader className="p-6 pb-4">
                     <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
                       <div>

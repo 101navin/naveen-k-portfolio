@@ -59,16 +59,16 @@ const Hero = () => {
 
   return (
     <>
-      <section 
-        id="home" 
+      <section
+        id="home"
         className="min-h-screen flex items-center justify-center relative overflow-hidden bg-background"
       >
         {/* Decorative Parallax Background Spheres */}
-        <motion.div 
+        <motion.div
           style={{ y: circle1Y }}
           className="absolute top-[15%] left-[8%] w-24 h-24 md:w-36 md:h-36 bg-gradient-to-tr from-primary/30 to-blue-500/20 rounded-full blur-xl opacity-60 dark:opacity-40"
         />
-        <motion.div 
+        <motion.div
           style={{ y: circle2Y }}
           className="absolute bottom-[20%] right-[10%] w-40 h-40 md:w-56 md:h-56 bg-gradient-to-br from-purple-500/20 to-pink-500/10 rounded-full blur-2xl opacity-60 dark:opacity-30"
         />
@@ -78,7 +78,7 @@ const Hero = () => {
 
         {/* Hero Content */}
         <div className="container mx-auto px-6 relative z-10">
-          <motion.div 
+          <motion.div
             style={{ y: textY }}
             variants={containerVariants}
             initial="hidden"
@@ -86,15 +86,15 @@ const Hero = () => {
             className="max-w-4xl mx-auto text-center flex flex-col items-center"
           >
             {/* Tagline Badge */}
-            <motion.span 
+            <motion.span
               variants={itemVariants}
               className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-primary/10 text-primary border border-primary/20 backdrop-blur-sm mb-6 uppercase tracking-wider"
             >
-              🚀 Welcome to my digital space
+              Welcome to my digital space
             </motion.span>
 
             {/* Title */}
-            <motion.h1 
+            <motion.h1
               variants={itemVariants}
               className="text-5xl md:text-8xl font-extrabold tracking-tight mb-6"
             >
@@ -102,23 +102,23 @@ const Hero = () => {
             </motion.h1>
 
             {/* Subtitle */}
-            <motion.p 
+            <motion.p
               variants={itemVariants}
               className="text-2xl md:text-3xl font-medium text-foreground dark:text-slate-200 mb-4 max-w-2xl"
             >
-              Future Data Analytics Engineer & AI Enthusiast
+              Future Web Developer & AI Enthusiast
             </motion.p>
 
             {/* Description */}
-            <motion.p 
+            <motion.p
               variants={itemVariants}
               className="text-lg md:text-xl text-muted-foreground mb-8 max-w-xl leading-relaxed"
             >
-              Passionate about Machine Learning, Data Analytics, and engineering modern, scalable solutions.
+              Passionate about Web Development, AI and engineering modern, scalable solutions.
             </motion.p>
 
             {/* Social Icons */}
-            <motion.div 
+            <motion.div
               variants={itemVariants}
               className="flex gap-4 mb-10"
             >
@@ -137,20 +137,20 @@ const Hero = () => {
             </motion.div>
 
             {/* CTAs */}
-            <motion.div 
+            <motion.div
               variants={itemVariants}
               className="flex flex-col sm:flex-row gap-4 items-center justify-center w-full"
             >
-              <Button 
-                size="lg" 
+              <Button
+                size="lg"
                 className="text-base px-8 py-6 rounded-full w-full sm:w-auto bg-gradient-to-r from-primary to-blue-600 hover:from-primary/95 hover:to-blue-600/95 shadow-md shadow-primary/20 hover:scale-105 active:scale-95 transition-all duration-300"
                 onClick={scrollToContact}
               >
                 Let's Connect
               </Button>
-              <Button 
-                variant="outline" 
-                size="lg" 
+              <Button
+                variant="outline"
+                size="lg"
                 className="text-base px-8 py-6 rounded-full w-full sm:w-auto border-2 hover:bg-muted/80 backdrop-blur-sm hover:scale-105 active:scale-95 transition-all duration-300"
                 onClick={() => setIsResumeOpen(true)}
               >
@@ -159,13 +159,13 @@ const Hero = () => {
             </motion.div>
 
             {/* Scroll Indicator */}
-            <motion.div 
+            <motion.div
               variants={itemVariants}
               className="mt-16"
             >
-              <Button 
-                variant="ghost" 
-                size="icon" 
+              <Button
+                variant="ghost"
+                size="icon"
                 className="rounded-full animate-bounce hover:bg-transparent"
                 onClick={scrollToAbout}
                 aria-label="Scroll down to About section"

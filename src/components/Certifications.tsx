@@ -9,41 +9,35 @@ const Certifications = () => {
       title: "30 Days Coding Challenge",
       issuer: "HackerRank",
       type: "Programming Challenge",
-      icon: "🏅"
     },
     {
       title: "Machine Learning with Python",
       issuer: "Cognitive Class",
       date: "August 2024",
       type: "Technical Certification",
-      icon: "🧠"
     },
     {
       title: "Cisco Networking Basics",
       issuer: "Cisco",
       type: "Networking",
-      icon: "🛡️"
     },
     {
       title: "Java Programming",
       issuer: "L&T EduTech",
       date: "June 2024",
       type: "Programming",
-      icon: "🧑‍💻"
     },
     {
       title: "Deloitte Technology Job Simulation",
       issuer: "Deloitte",
       date: "March 2025",
       type: "Professional Simulation",
-      icon: "💼"
     },
     {
       title: "Prompt Engineering Zero to Hero",
       issuer: "AI Course",
       date: "October 2023",
       type: "AI/ML",
-      icon: "⚡"
     }
   ];
 
@@ -67,8 +61,8 @@ const Certifications = () => {
 
   const internshipCertificates = [
     {
-      title: "Imagecon Academy Internship Certificate",
-      description: "Predictive Analytics for Hourly-Based Score Estimation",
+      title: "Firts Matrix Solutions Pvt. Ltd",
+      description: "Full Stack Development",
       type: "Internship Completion"
     },
     {
@@ -82,7 +76,7 @@ const Certifications = () => {
     <section id="certifications" className="py-24 bg-background relative overflow-hidden">
       <div className="container mx-auto px-6">
         <div className="max-w-6xl mx-auto">
-          
+
           {/* Section Header */}
           <div className="text-center mb-16">
             <ScrollReveal direction="up" delay={0.1}>
@@ -92,7 +86,7 @@ const Certifications = () => {
               </h2>
             </ScrollReveal>
           </div>
-          
+
           {/* Certifications Sub-section */}
           <div className="mb-20">
             <ScrollReveal direction="up" delay={0.15}>
@@ -103,9 +97,9 @@ const Certifications = () => {
             </ScrollReveal>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {certifications.map((cert, index) => (
-                <ScrollReveal 
-                  key={index} 
-                  direction="up" 
+                <ScrollReveal
+                  key={index}
+                  direction="up"
                   delay={0.05 * (index % 3)}
                 >
                   <Card className="glass-card glass-card-hover border border-border/40 hover:-translate-y-2 hover:shadow-xl transition-all duration-300 h-full flex flex-col items-center text-center p-6 justify-between">
@@ -138,9 +132,9 @@ const Certifications = () => {
             </ScrollReveal>
             <div className="grid md:grid-cols-3 gap-6">
               {badges.map((badge, index) => (
-                <ScrollReveal 
-                  key={index} 
-                  direction="up" 
+                <ScrollReveal
+                  key={index}
+                  direction="up"
                   delay={0.1 * index}
                 >
                   <Card className="glass-card border border-border/40 hover:-translate-y-2 hover:shadow-xl bg-gradient-to-br from-blue-500/5 via-purple-500/5 to-transparent transition-all duration-300 h-full">
@@ -165,9 +159,9 @@ const Certifications = () => {
             </ScrollReveal>
             <div className="grid md:grid-cols-2 gap-6">
               {internshipCertificates.map((cert, index) => (
-                <ScrollReveal 
-                  key={index} 
-                  direction={index === 0 ? "left" : "right"} 
+                <ScrollReveal
+                  key={index}
+                  direction={index === 0 ? "left" : "right"}
                   delay={0.2}
                 >
                   <Card className="glass-card border border-border/40 hover:-translate-y-2 hover:shadow-xl bg-gradient-to-r from-emerald-500/5 to-blue-500/5 transition-all duration-300 h-full relative overflow-hidden group">

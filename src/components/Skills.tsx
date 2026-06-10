@@ -71,7 +71,7 @@ const LinearSkill = ({ name, level }: { name: string; level: number }) => {
         <motion.div 
           initial={{ width: 0 }}
           animate={inView ? { width: `${level}%` } : { width: 0 }}
-          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] as const }}
           className="h-full bg-gradient-to-r from-primary to-blue-500 rounded-full"
         />
       </div>

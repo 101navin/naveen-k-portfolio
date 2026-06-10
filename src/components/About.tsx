@@ -11,9 +11,9 @@ const About = () => {
 
   const stats = [
     { value: 1, suffix: "+", label: "Years Experience", desc: "Part-time & Internships" },
-    { value: 5, suffix: "+", label: "Key Projects", desc: "ML, CV & Web Systems" },
+    { value: 5, suffix: "+", label: "Key Projects", desc: "Web Technologies & AI Concepts" },
     { value: 10, suffix: "+", label: "Certifications", desc: "HackerRank, Cisco, L&T" },
-    { value: 15, suffix: "+", label: "Skills Mastered", desc: "Languages, Tools & ML" }
+    { value: 15, suffix: "+", label: "Skills Mastered", desc: "Languages & Tools" }
   ];
 
   return (
@@ -26,13 +26,13 @@ const About = () => {
               About Me
             </h2>
           </ScrollReveal>
-          
+
           <ScrollReveal direction="up" delay={0.2} className="max-w-3xl mx-auto">
             <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-8">
-              I'm a final-year B.E CSE (AI & ML) student with hands-on experience in Java, Python, SQL, Advanced Excel, and Machine Learning. I've worked on real-time projects and internships, gaining practical skills in data analysis, model building, and problem-solving. Along with my technical expertise, I've built strong communication and teamwork abilities through workshops and collaborative projects.
+              I'm a B.E CSE (AI & ML) student with hands-on experience in Reactjs, Python, SQL, and Machine Learning. I've worked on real-time projects and internships, gaining practical skills in web developments, model building and problem-solving. Along with my technical expertise, I've built strong communication and teamwork abilities through workshops and collaborative projects.
             </p>
           </ScrollReveal>
-          
+
           <ScrollReveal direction="scale" delay={0.3} className="max-w-2xl mx-auto">
             <Card className="glass-card border-l-4 border-l-primary shadow-md p-6">
               <CardContent className="p-0">
@@ -47,9 +47,9 @@ const About = () => {
         {/* Stats Grid */}
         <div ref={ref} className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 mt-16">
           {stats.map((stat, index) => (
-            <ScrollReveal 
-              key={index} 
-              direction="up" 
+            <ScrollReveal
+              key={index}
+              direction="up"
               delay={0.1 * index}
               className="w-full"
             >
