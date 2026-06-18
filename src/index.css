@@ -134,3 +134,7 @@
   }
 }
 
+/* Hide the default Lovable badge/watermark globally */
+#lovable-badge {
+  display: none !important;
+}

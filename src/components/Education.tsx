@@ -22,7 +22,7 @@ const Education = () => {
   ];
 
   return (
-    <section id="education" className="py-24 bg-background relative overflow-hidden">
+    <section id="education" className="py-24 bg-transparent relative z-10 overflow-hidden">
       <div className="container mx-auto px-6">
         <div className="max-w-4xl mx-auto">
 

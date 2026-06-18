@@ -47,7 +47,7 @@ const DustParticles = () => {
     const initParticles = () => {
       particles = [];
       // Auto-reduces particles count on mobile for low CPU usage & high performance
-      const numParticles = window.innerWidth < 768 ? 150 : 240;
+      const numParticles = window.innerWidth < 768 ? 220 : 380;
 
       for (let i = 0; i < numParticles; i++) {
         const x = Math.random() * canvas.width;
@@ -181,34 +181,34 @@ const DustParticles = () => {
           // Palette (Dark Mode)
           switch (p.colorIdx) {
             case 0:
-              colorStr = `rgba(255, 255, 255, ${p.alpha * 0.25})`; // Base white
+              colorStr = `rgba(255, 255, 255, ${p.alpha * 0.32})`; // Base white
               break;
             case 1:
-              colorStr = `rgba(100, 180, 255, ${p.alpha * 0.35})`; // Blue glow
+              colorStr = `rgba(100, 180, 255, ${p.alpha * 0.42})`; // Blue glow
               break;
             case 2:
-              colorStr = `rgba(180, 200, 255, ${p.alpha * 0.20})`; // Lavender tint
+              colorStr = `rgba(180, 200, 255, ${p.alpha * 0.28})`; // Lavender tint
               break;
             case 3:
             default:
-              colorStr = `rgba(200, 220, 255, ${p.alpha * 0.15})`; // Shimmer
+              colorStr = `rgba(200, 220, 255, ${p.alpha * 0.22})`; // Shimmer
               break;
           }
         } else {
           // Color Palette (Light Mode - Premium grays/slates and muted tints)
           switch (p.colorIdx) {
             case 0:
-              colorStr = `rgba(75, 85, 99, ${p.alpha * 0.18})`; // Slate gray base
+              colorStr = `rgba(75, 85, 99, ${p.alpha * 0.24})`; // Slate gray base
               break;
             case 1:
-              colorStr = `rgba(59, 130, 246, ${p.alpha * 0.15})`; // Muted blue
+              colorStr = `rgba(59, 130, 246, ${p.alpha * 0.22})`; // Muted blue
               break;
             case 2:
-              colorStr = `rgba(99, 102, 241, ${p.alpha * 0.12})`; // Lavender/indigo
+              colorStr = `rgba(99, 102, 241, ${p.alpha * 0.18})`; // Lavender/indigo
               break;
             case 3:
             default:
-              colorStr = `rgba(148, 163, 184, ${p.alpha * 0.14})`; // Slate shimmer
+              colorStr = `rgba(148, 163, 184, ${p.alpha * 0.20})`; // Slate shimmer
               break;
           }
         }
@@ -258,7 +258,7 @@ const DustParticles = () => {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 pointer-events-none -z-10 w-full h-full bg-transparent"
+      className="fixed inset-0 pointer-events-none z-0 w-full h-full bg-transparent"
       aria-hidden="true"
     />
   );

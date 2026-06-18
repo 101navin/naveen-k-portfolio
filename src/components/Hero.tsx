@@ -61,7 +61,7 @@ const Hero = () => {
     <>
       <section
         id="home"
-        className="min-h-screen flex items-center justify-center relative overflow-hidden bg-background"
+        className="min-h-screen flex items-center justify-center relative z-10 overflow-hidden bg-transparent"
       >
         {/* Decorative Parallax Background Spheres */}
         <motion.div

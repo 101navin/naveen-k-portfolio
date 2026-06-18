@@ -17,7 +17,7 @@ const About = () => {
   ];
 
   return (
-    <section id="about" className="py-24 bg-muted/20 relative overflow-hidden">
+    <section id="about" className="py-24 bg-muted/10 relative z-10 overflow-hidden">
       <div className="container mx-auto px-6">
         <div className="max-w-4xl mx-auto text-center mb-16">
           <ScrollReveal direction="up" delay={0.1}>

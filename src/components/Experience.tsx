@@ -6,6 +6,15 @@ import ScrollReveal from './ScrollReveal';
 const Experience = () => {
   const experiences = [
     {
+      role: "MERN Stack Developer Intern",
+      company: "ES EthicSecur SoftTec Pvt Ltd",
+      duration: "05/2026 - Present",
+      location: "SALEM, INDIA",
+      type: "Internship",
+      description: "Developing and maintaining responsive web applications using MongoDB, Express.js, React, and Node.js. Participating in system design, API development, and frontend integration.",
+      highlights: ["React.js", "Node.js", "MongoDB", "Express.js", "MERN Stack"]
+    },
+    {
       role: "Full Stack Development Intern",
       company: "First Matrix Solutions Pvt Ltd",
       duration: "01/2026 - 02/2026",
@@ -35,7 +44,7 @@ const Experience = () => {
   ];
 
   return (
-    <section id="experience" className="py-24 bg-background relative overflow-hidden">
+    <section id="experience" className="py-24 bg-transparent relative z-10 overflow-hidden">
       <div className="container mx-auto px-6">
 
         {/* Section Title */}

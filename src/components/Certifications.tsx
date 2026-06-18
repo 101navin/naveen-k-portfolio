@@ -73,7 +73,7 @@ const Certifications = () => {
   ];
 
   return (
-    <section id="certifications" className="py-24 bg-background relative overflow-hidden">
+    <section id="certifications" className="py-24 bg-transparent relative z-10 overflow-hidden">
       <div className="container mx-auto px-6">
         <div className="max-w-6xl mx-auto">
 

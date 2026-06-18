@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { TrendingUp, ScanEye, ExternalLink, Github, Filter } from 'lucide-react';
+import { TrendingUp, ScanEye, ExternalLink, Github, Filter, ShieldCheck, ShoppingBag } from 'lucide-react';
 import ScrollReveal from './ScrollReveal';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -10,17 +10,31 @@ const Projects = () => {
   const [activeFilter, setActiveFilter] = useState<'All' | 'Internship' | 'Development'>('All');
 
   const projects = [
+    
     {
-      title: "Predictive Analytics for Hourly-Based Score Estimation",
-      duration: "July 2024 - August 2024",
-      description: "Project using machine learning algorithms to predict student scores based on hourly patterns. Implemented various ML models to analyze study patterns and forecast academic performance.",
-      technologies: ["Machine Learning", "Python", "Data Analytics", "Predictive Modeling"],
-      type: "Internship Project",
-      category: "Internship",
-      icon: <TrendingUp className="w-10 h-10 text-blue-500" />,
-      gradient: "from-blue-600/20 via-indigo-600/10 to-transparent",
+      title: "Smart Helmet Detection",
+      duration: "2026",
+      description: "A real-time deep learning system using YOLO object detection to identify whether motorcyclists are wearing helmets. Processes video streams to enhance traffic safety and compliance monitoring.",
+      technologies: ["YOLO", "Computer Vision", "Python", "Deep Learning", "OpenCV"],
+      type: "Development Project",
+      category: "Development",
+      icon: <ShieldCheck className="w-10 h-10 text-purple-500" />,
+      gradient: "from-purple-600/20 via-pink-600/10 to-transparent",
       github: "https://github.com/101navin",
-      demo: "https://github.com/101navin"
+      demo: "https://github.com/101navin",
+      image: "/helmet-detection.png"
+    },
+    {
+      title: "E-Commerce Website",
+      description: "A modern, responsive e-commerce web application featuring user authentication, product filtering, shopping cart management, and a checkout interface.",
+      technologies: ["React", "Tailwind CSS", "State Management", "Web Development", "API Integration"],
+      type: "Development Project",
+      category: "Development",
+      icon: <ShoppingBag className="w-10 h-10 text-orange-500" />,
+      gradient: "from-orange-600/20 via-amber-600/10 to-transparent",
+      github: "https://github.com/101navin",
+      demo: "https://github.com/101navin",
+      image: "/ecommerce.png"
     },
     {
       title: "Object Detection System",
@@ -32,7 +46,21 @@ const Projects = () => {
       icon: <ScanEye className="w-10 h-10 text-emerald-500" />,
       gradient: "from-emerald-600/20 via-teal-600/10 to-transparent",
       github: "https://github.com/101navin",
-      demo: "https://github.com/101navin"
+      demo: "https://github.com/101navin",
+      image: "/object-detection.jpg"
+    },
+    {
+      title: "Predictive Analytics for Hourly-Based Score Estimation",
+      duration: "July 2024 - August 2024",
+      description: "Project using machine learning algorithms to predict student scores based on hourly patterns. Implemented various ML models to analyze study patterns and forecast academic performance.",
+      technologies: ["Machine Learning", "Python", "Data Analytics", "Predictive Modeling"],
+      type: "Internship Project",
+      category: "Internship",
+      icon: <TrendingUp className="w-10 h-10 text-blue-500" />,
+      gradient: "from-blue-600/20 via-indigo-600/10 to-transparent",
+      github: "https://github.com/101navin",
+      demo: "https://github.com/101navin",
+      image: "/predictive-analytics.png"
     }
   ];
 
@@ -48,7 +76,7 @@ const Projects = () => {
   ] as const;
 
   return (
-    <section id="projects" className="py-24 bg-background relative overflow-hidden">
+    <section id="projects" className="py-24 bg-transparent relative z-10 overflow-hidden">
       <div className="container mx-auto px-6">
         
         {/* Section Header */}
@@ -110,13 +138,26 @@ const Projects = () => {
                 <Card className="glass-card border border-border/40 overflow-hidden h-full flex flex-col group hover:-translate-y-3 hover:shadow-2xl transition-all duration-500 relative">
                   
                   {/* Visual Preview Area with Zoom */}
-                  <div className={`relative h-48 w-full bg-gradient-to-br ${project.gradient} border-b border-border/40 overflow-hidden flex items-center justify-center p-6`}>
+                  <div className="relative h-48 w-full border-b border-border/40 overflow-hidden flex items-center justify-center">
+                    {project.image ? (
+                      <img 
+                        src={project.image} 
+                        alt={project.title} 
+                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        loading="lazy"
+                      />
+                    ) : (
+                      <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient}`} />
+                    )}
+                    
                     <div className="absolute inset-0 bg-grid-pattern opacity-10" />
                     
-                    {/* Themed Icon */}
-                    <div className="transform group-hover:scale-125 group-hover:rotate-6 transition-all duration-500 z-10 bg-white/80 dark:bg-slate-900/80 p-4 rounded-2xl shadow-md border border-white/20">
-                      {project.icon}
-                    </div>
+                    {!project.image && (
+                      /* Themed Icon for projects without cover images */
+                      <div className="transform group-hover:scale-125 group-hover:rotate-6 transition-all duration-500 z-10 bg-white/80 dark:bg-slate-900/80 p-4 rounded-2xl shadow-md border border-white/20">
+                        {project.icon}
+                      </div>
+                    )}
 
                     {/* Dark Glass Overlay with Buttons (revealed on hover) */}
                     <div className="absolute inset-0 bg-black/60 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4 z-20">
