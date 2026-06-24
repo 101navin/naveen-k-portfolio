@@ -1,8 +1,8 @@
-# Welcome to your Lovable project
+# Welcome to my porfolio
 
 ## Project info
 
-**URL**: https://lovable.dev/projects/2c9c69c5-72d4-4e0d-896a-12731b74ae68
+**URL**: https://naveen-k-portfolio.vercel.app/
 
 **Use your preferred IDE**
 
