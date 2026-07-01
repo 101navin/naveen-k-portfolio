@@ -1,5 +1,10 @@
-import React from "react";
-import { motion, Variants, useReducedMotion } from "framer-motion";
+import React, { useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
+
+// Register the ScrollTrigger plugin
+gsap.registerPlugin(ScrollTrigger);
 
 interface ScrollRevealProps {
   children: React.ReactNode;
@@ -20,75 +25,88 @@ const ScrollReveal: React.FC<ScrollRevealProps> = ({
   className = "",
   once = true,
   margin = "-50px",
-  amount = 0.5, // Animates when 50% of element is in viewport
+  amount = 0.5,
 }) => {
-  const shouldReduce = useReducedMotion();
+  const containerRef = useRef<HTMLDivElement>(null);
 
-  const getVariants = (): Variants => {
-    if (shouldReduce) {
-      return {
-        hidden: { opacity: 0 },
-        visible: { opacity: 1 },
-      };
+  useGSAP(() => {
+    if (!containerRef.current) return;
+
+    // Check for user reduced motion preference
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (prefersReducedMotion) {
+      gsap.fromTo(
+        containerRef.current,
+        { opacity: 0 },
+        {
+          opacity: 1,
+          duration: 0.1,
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "top 90%",
+            once: once,
+            toggleActions: once ? "play none none none" : "play reverse play reverse",
+          },
+        }
+      );
+      return;
     }
 
+    // Define initial states based on direction
+    const initialProps: gsap.TweenVars = { opacity: 0 };
     switch (direction) {
       case "up":
-        return {
-          hidden: { opacity: 0, y: 30 },
-          visible: { opacity: 1, y: 0 },
-        };
+        initialProps.y = 40;
+        break;
       case "down":
-        return {
-          hidden: { opacity: 0, y: -30 },
-          visible: { opacity: 1, y: 0 },
-        };
+        initialProps.y = -40;
+        break;
       case "left":
-        return {
-          hidden: { opacity: 0, x: 30 },
-          visible: { opacity: 1, x: 0 },
-        };
+        initialProps.x = 40;
+        break;
       case "right":
-        return {
-          hidden: { opacity: 0, x: -30 },
-          visible: { opacity: 1, x: 0 },
-        };
+        initialProps.x = -40;
+        break;
       case "scale":
-        return {
-          hidden: { opacity: 0, scale: 0.9 },
-          visible: { opacity: 1, scale: 1 },
-        };
+        initialProps.scale = 0.92;
+        break;
       case "fade":
       default:
-        return {
-          hidden: { opacity: 0 },
-          visible: { opacity: 1 },
-        };
+        break;
     }
-  };
 
-  const getTransition = () => {
-    if (shouldReduce) {
-      return { duration: 0.1 };
+    // Determine viewport trigger point based on the 'amount' prop
+    let triggerStart = "top 85%";
+    if (amount === "all" || amount === 1) {
+      triggerStart = "top 70%";
     }
-    return {
-      duration,
-      delay,
-      ease: [0.21, 1.02, 0.43, 1.01] as const,
-    };
-  };
+
+    gsap.fromTo(
+      containerRef.current,
+      initialProps,
+      {
+        opacity: 1,
+        x: 0,
+        y: 0,
+        scale: 1,
+        duration: duration,
+        delay: delay,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: triggerStart,
+          once: once,
+          toggleActions: once ? "play none none none" : "play reverse play reverse",
+        },
+      }
+    );
+  }, { scope: containerRef, dependencies: [direction, delay, duration, once, amount] });
 
   return (
-    <motion.div
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once, margin, amount }}
-      variants={getVariants()}
-      transition={getTransition()}
-      className={className}
-    >
+    <div ref={containerRef} className={className}>
       {children}
-    </motion.div>
+    </div>
   );
 };
 

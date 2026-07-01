@@ -10,6 +10,7 @@ import Navigation from '../components/Navigation';
 import ScrollProgress from '../components/ScrollProgress';
 import DustParticles from '../components/DustParticles';
 import BackToTop from '../components/BackToTop';
+import CursorSpotlight from '../components/CursorSpotlight';
 
 const Index = () => {
   return (
@@ -17,6 +18,7 @@ const Index = () => {
       {/* Global Page Interactive Widgets */}
       <ScrollProgress />
       <DustParticles />
+      <CursorSpotlight />
       <BackToTop />
       
       {/* Page Sections */}

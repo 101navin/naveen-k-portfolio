@@ -1,17 +1,72 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowDown, Github, Linkedin, Mail } from 'lucide-react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useGSAP } from '@gsap/react';
 import Resume from './Resume';
+
+// Register the ScrollTrigger plugin
+gsap.registerPlugin(ScrollTrigger);
+
+// Custom ScrambleText component matching GSAP's ScrambleTextPlugin behavior
+const ScrambleText = ({ text, delay = 0 }: { text: string; delay?: number }) => {
+  const [displayText, setDisplayText] = useState("");
+  const chars = "!@#$%^&*()_+~`|}{[]:;?><,./-=";
+
+  useEffect(() => {
+    let isMounted = true;
+    const totalDuration = 1500; // ms
+    const frameRate = 30; // ms per frame
+    const totalFrames = totalDuration / frameRate;
+    
+    const startTimer = setTimeout(() => {
+      let frame = 0;
+      
+      const interval = setInterval(() => {
+        if (!isMounted) return;
+        
+        frame++;
+        const progress = frame / totalFrames;
+        const resolvedLetters = Math.floor(progress * text.length);
+        
+        let result = "";
+        for (let i = 0; i < text.length; i++) {
+          if (i < resolvedLetters) {
+            result += text[i];
+          } else if (text[i] === " ") {
+            result += " ";
+          } else {
+            result += chars[Math.floor(Math.random() * chars.length)];
+          }
+        }
+        
+        setDisplayText(result);
+        
+        if (frame >= totalFrames) {
+          setDisplayText(text);
+          clearInterval(interval);
+        }
+      }, frameRate);
+      
+      return () => clearInterval(interval);
+    }, delay * 1000);
+
+    return () => {
+      isMounted = false;
+      clearTimeout(startTimer);
+    };
+  }, [text, delay]);
+
+  return <span>{displayText}</span>;
+};
 
 const Hero = () => {
   const [isResumeOpen, setIsResumeOpen] = useState(false);
-  const { scrollY } = useScroll();
-
-  // Parallax offsets for background decorative circles
-  const circle1Y = useTransform(scrollY, [0, 1000], [0, -200]);
-  const circle2Y = useTransform(scrollY, [0, 1000], [0, 100]);
-  const textY = useTransform(scrollY, [0, 500], [0, 50]);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const circle1Ref = useRef<HTMLDivElement>(null);
+  const circle2Ref = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
 
   const scrollToContact = () => {
     const element = document.querySelector('#contact');
@@ -27,28 +82,93 @@ const Hero = () => {
     }
   };
 
-  // Framer Motion container & item variants
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.2,
-      },
-    },
-  };
+  useGSAP(() => {
+    // 1. Entrance timeline
+    const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
+    // Set initial values to prevent FOUC
+    gsap.set(".hero-tagline", { opacity: 0, y: 20 });
+    gsap.set(".hero-char", { opacity: 0, y: -150 });
+    gsap.set([".hero-desc", ".hero-socials", ".hero-ctas", ".hero-scroll"], { opacity: 0, y: 25 });
+
+    tl.to(".hero-tagline", { opacity: 1, y: 0, duration: 0.6, delay: 0.2 });
+    
+    // Stagger character physics drop
+    tl.to(".hero-char", {
       opacity: 1,
       y: 0,
-      transition: {
-        duration: 0.8,
-        ease: [0.21, 1.02, 0.43, 1.01] as const,
-      },
-    },
+      duration: 1.2,
+      stagger: 0.04,
+      ease: "bounce.out"
+    }, "-=0.2");
+
+    // Fade-in trailing content
+    tl.to([".hero-desc", ".hero-socials", ".hero-ctas", ".hero-scroll"], {
+      opacity: 1,
+      y: 0,
+      duration: 0.8,
+      stagger: 0.15
+    }, "-=0.4");
+
+    // 2. Parallax scroll-linked effects
+    if (circle1Ref.current) {
+      gsap.to(circle1Ref.current, {
+        y: -150,
+        ease: "none",
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top top",
+          end: "bottom top",
+          scrub: true,
+        }
+      });
+    }
+
+    if (circle2Ref.current) {
+      gsap.to(circle2Ref.current, {
+        y: 100,
+        ease: "none",
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top top",
+          end: "bottom top",
+          scrub: true,
+        }
+      });
+    }
+
+    if (contentRef.current) {
+      gsap.to(contentRef.current, {
+        y: 40,
+        ease: "none",
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top top",
+          end: "bottom top",
+          scrub: true,
+        }
+      });
+    }
+  }, { scope: containerRef });
+
+  const onButtonEnter = (e: React.MouseEvent<HTMLButtonElement>) => {
+    gsap.to(e.currentTarget, {
+      y: -6,
+      scale: 1.05,
+      boxShadow: "0 20px 25px -5px rgba(59, 130, 246, 0.25), 0 8px 10px -6px rgba(147, 51, 234, 0.2)",
+      duration: 0.35,
+      ease: "power2.out",
+    });
+  };
+
+  const onButtonLeave = (e: React.MouseEvent<HTMLButtonElement>) => {
+    gsap.to(e.currentTarget, {
+      y: 0,
+      scale: 1,
+      boxShadow: "none",
+      duration: 0.35,
+      ease: "power2.out",
+    });
   };
 
   const socialLinks = [
@@ -57,70 +177,83 @@ const Hero = () => {
     { icon: <Github size={20} />, href: "https://github.com/101navin", label: "GitHub" },
   ];
 
+  // Character split arrays for the physics drop
+  const titlePart1 = "Hi, I am ";
+  const titlePart2 = "Naveen K";
+
+  const splitPart1 = titlePart1.split("").map((char, idx) => (
+    <span key={`p1-${idx}`} className="hero-char inline-block" style={{ whiteSpace: 'pre' }}>
+      {char}
+    </span>
+  ));
+
+  const splitPart2 = titlePart2.split("").map((char, idx) => (
+    <span key={`p2-${idx}`} className="hero-char inline-block bg-gradient-to-r from-primary via-blue-500 to-purple-600 bg-clip-text text-transparent" style={{ whiteSpace: 'pre' }}>
+      {char}
+    </span>
+  ));
+
   return (
     <>
       <section
+        ref={containerRef}
         id="home"
         className="min-h-screen flex items-center justify-center relative z-10 overflow-hidden bg-transparent"
       >
-        {/* Decorative Parallax Background Spheres */}
-        <motion.div
-          style={{ y: circle1Y }}
-          className="absolute top-[15%] left-[8%] w-24 h-24 md:w-36 md:h-36 bg-gradient-to-tr from-primary/30 to-blue-500/20 rounded-full blur-xl opacity-60 dark:opacity-40"
+        {/* Ambient Background Glow Spheres (behind glass) */}
+        <div
+          ref={circle1Ref}
+          className="absolute top-[10%] left-[5%] w-64 h-64 md:w-[450px] md:h-[450px] bg-gradient-to-tr from-primary/25 to-blue-500/15 rounded-full blur-[100px] opacity-70 dark:opacity-40 pointer-events-none"
         />
-        <motion.div
-          style={{ y: circle2Y }}
-          className="absolute bottom-[20%] right-[10%] w-40 h-40 md:w-56 md:h-56 bg-gradient-to-br from-purple-500/20 to-pink-500/10 rounded-full blur-2xl opacity-60 dark:opacity-30"
+        <div
+          ref={circle2Ref}
+          className="absolute bottom-[10%] right-[5%] w-80 h-80 md:w-[600px] md:h-[600px] bg-gradient-to-br from-purple-500/20 to-pink-500/10 rounded-full blur-[120px] opacity-70 dark:opacity-30 pointer-events-none"
         />
 
-        {/* Ambient Gradient Glow */}
-        <div className="absolute inset-0 bg-radial-gradient from-transparent via-background to-background pointer-events-none" />
+        {/* Glassmorphic Backdrop Blur Layer */}
+        <div className="absolute inset-0 bg-black/[0.06] dark:bg-background/40 backdrop-blur-[70px] pointer-events-none" />
+        <div className="absolute inset-0 bg-grid-pattern opacity-[0.03] dark:opacity-[0.05] pointer-events-none" />
 
         {/* Hero Content */}
         <div className="container mx-auto px-6 relative z-10">
-          <motion.div
-            style={{ y: textY }}
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
+          <div
+            ref={contentRef}
             className="max-w-4xl mx-auto text-center flex flex-col items-center"
           >
             {/* Tagline Badge */}
-            <motion.span
-              variants={itemVariants}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-primary/10 text-primary border border-primary/20 backdrop-blur-sm mb-6 uppercase tracking-wider"
+            <span
+              className="hero-tagline inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-primary/10 text-primary border border-primary/20 backdrop-blur-sm mb-6 uppercase tracking-wider"
             >
               Welcome to my digital space
-            </motion.span>
+            </span>
 
             {/* Title */}
-            <motion.h1
-              variants={itemVariants}
+            <h1
               className="text-5xl md:text-8xl font-extrabold tracking-tight mb-6"
             >
-              Hi, I'm <span className="bg-gradient-to-r from-primary via-blue-500 to-purple-600 bg-clip-text text-transparent">Naveen K</span>
-            </motion.h1>
+              {splitPart1}
+              <span className="inline-block whitespace-nowrap">
+                {splitPart2}
+              </span>
+            </h1>
 
             {/* Subtitle */}
-            <motion.p
-              variants={itemVariants}
+            <p
               className="text-2xl md:text-3xl font-medium text-foreground dark:text-slate-200 mb-4 max-w-2xl"
             >
-              Future Web Developer & AI Enthusiast
-            </motion.p>
+              <ScrambleText text="Future Web Developer & AI Enthusiast" delay={1.2} />
+            </p>
 
             {/* Description */}
-            <motion.p
-              variants={itemVariants}
-              className="text-lg md:text-xl text-muted-foreground mb-8 max-w-xl leading-relaxed"
+            <p
+              className="hero-desc text-lg md:text-xl text-muted-foreground mb-8 max-w-xl leading-relaxed"
             >
               Passionate about Web Development, AI and engineering modern, scalable solutions.
-            </motion.p>
+            </p>
 
             {/* Social Icons */}
-            <motion.div
-              variants={itemVariants}
-              className="flex gap-4 mb-10"
+            <div
+              className="hero-socials flex gap-4 mb-10"
             >
               {socialLinks.map((social, idx) => (
                 <a
@@ -134,16 +267,17 @@ const Hero = () => {
                   {social.icon}
                 </a>
               ))}
-            </motion.div>
+            </div>
 
             {/* CTAs */}
-            <motion.div
-              variants={itemVariants}
-              className="flex flex-col sm:flex-row gap-4 items-center justify-center w-full"
+            <div
+              className="hero-ctas flex flex-col sm:flex-row gap-4 items-center justify-center w-full"
             >
               <Button
                 size="lg"
-                className="text-base px-8 py-6 rounded-full w-full sm:w-auto bg-gradient-to-r from-primary to-blue-600 hover:from-primary/95 hover:to-blue-600/95 shadow-md shadow-primary/20 hover:scale-105 active:scale-95 transition-all duration-300"
+                className="text-base px-8 py-6 rounded-full w-full sm:w-auto bg-gradient-to-r from-primary to-blue-600 hover:from-primary/95 hover:to-blue-600/95 shadow-md shadow-primary/20 active:scale-95 transition-transform duration-300"
+                onMouseEnter={onButtonEnter}
+                onMouseLeave={onButtonLeave}
                 onClick={scrollToContact}
               >
                 Let's Connect
@@ -151,17 +285,18 @@ const Hero = () => {
               <Button
                 variant="outline"
                 size="lg"
-                className="text-base px-8 py-6 rounded-full w-full sm:w-auto border-2 hover:bg-muted/80 backdrop-blur-sm hover:scale-105 active:scale-95 transition-all duration-300"
+                className="text-base px-8 py-6 rounded-full w-full sm:w-auto border-2 hover:bg-muted/80 backdrop-blur-sm active:scale-95 transition-transform duration-300"
+                onMouseEnter={onButtonEnter}
+                onMouseLeave={onButtonLeave}
                 onClick={() => setIsResumeOpen(true)}
               >
                 View Resume
               </Button>
-            </motion.div>
+            </div>
 
             {/* Scroll Indicator */}
-            <motion.div
-              variants={itemVariants}
-              className="mt-16"
+            <div
+              className="hero-scroll mt-16"
             >
               <Button
                 variant="ghost"
@@ -172,8 +307,8 @@ const Hero = () => {
               >
                 <ArrowDown size={22} className="text-muted-foreground hover:text-primary transition-colors" />
               </Button>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </div>
       </section>
 

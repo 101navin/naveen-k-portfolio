@@ -23,7 +23,15 @@ const Education = () => {
 
   return (
     <section id="education" className="py-24 bg-transparent relative z-10 overflow-hidden">
-      <div className="container mx-auto px-6">
+      {/* Ambient background glows */}
+      <div className="absolute top-[20%] left-[-10%] w-[350px] h-[350px] md:w-[500px] md:h-[500px] bg-blue-500/10 dark:bg-blue-600/5 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute bottom-[20%] right-[-10%] w-[350px] h-[350px] md:w-[500px] md:h-[500px] bg-emerald-500/10 dark:bg-emerald-600/5 rounded-full blur-[100px] pointer-events-none" />
+      
+      {/* Glassmorphic overlay */}
+      <div className="absolute inset-0 bg-black/[0.06] dark:bg-background/40 backdrop-blur-[60px] pointer-events-none" />
+      <div className="absolute inset-0 bg-grid-pattern opacity-[0.02] dark:opacity-[0.04] pointer-events-none" />
+      
+      <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-4xl mx-auto">
 
           {/* Section Header */}
